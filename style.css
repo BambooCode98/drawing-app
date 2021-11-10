@@ -1,0 +1,8 @@
+.gridcontainer {
+    border: 2px red solid;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
