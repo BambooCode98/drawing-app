@@ -2,22 +2,27 @@
     border: 2px red solid;
     height: 100vh;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(46px,1fr));
     margin: 0;
 }
 
 #gridbox {
-    border: 1px solid red;
-    height: 50px;
-    width: 50px;
+    /* border: 1px solid red; */
+    height: 100%;
+    width: 100%;
     margin: 0;
+    min-width: 0;
+    background-color: white;
+    
     
 
 }
 
-/* #gridbox:hover {
-    background-color: black;
-} */
+#reset {
+    padding: 25px 809px;
+}
+
+#reset :hover {
+    background-color: lightgreen;
+}

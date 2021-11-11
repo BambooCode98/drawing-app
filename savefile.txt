@@ -30,3 +30,51 @@ function hover() {
 
 
 createChildElements(512);   //128, 256, 512
+
+
+
+resetButton.addEventListener("click", function () {
+    gridSquare.removeEventListener("mouseover", hover);
+});
+
+The function below generates random hsla color values.
+
+function color(saturation, lightness, alpha, amount) {
+    let colors = []
+    let huedelta = Math.trunc(360 / amount)
+  
+    for (let i = 0; i < amount; i++) {
+      let hue = i * huedelta
+      colors.push(`hsla(${hue},${saturation}%,${lightness}%,${alpha})`)
+    }
+  
+    return colors
+}
+
+
+
+
+function randomColor() {
+    let rand = Math.floor(Math.random() * 10);
+    if (rand < 1) {
+        return this.style.backgroundColor = "yellow";
+    } else if (rand >= 1 && rand < 2) {
+        return this.style.backgroundColor = "green";
+    } else if (rand >= 2 && rand < 3) {
+        return this.style.backgroundColor = "blue";
+    } else if (rand >= 3 && rand < 4) {
+        return this.style.backgroundColor = "red";
+    } else if (rand >= 4 && rand < 5) {
+        return this.style.backgroundColor = "black";
+    } else if (rand >= 5 && rand < 6) {
+        return this.style.backgroundColor = "light blue";
+    } else if (rand >= 6 && rand < 7) {
+        return this.style.backgroundColor = "orange";
+    } else if (rand >= 7 && rand < 8) {
+        return this.style.backgroundColor = "pink";
+    } else if (rand >= 8 && rand < 9) {
+        return this.style.backgroundColor = "purple";
+    } else if (rand >= 9 && rand < 10) {
+        return this.style.backgroundColor = "light green";
+    }
+}
