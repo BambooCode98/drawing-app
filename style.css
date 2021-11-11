@@ -5,4 +5,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
 }
+
+#gridbox {
+    border: 1px solid red;
+    height: 50px;
+    width: 50px;
+    margin: 0;
+    
+
+}
+
+/* #gridbox:hover {
+    background-color: black;
+} */

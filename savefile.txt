@@ -19,8 +19,14 @@ function hover() {
     this.style.backgroundColor = "green";
 }
 
-createChildElements(1024);   //128, 256, 512, 1024
+//function hoverEvent(maxBoxes) {
+    //for(i = 0; i < maxBoxes; i++) {
+        //const hoverBox = document.querySelectorAll('gridbox');
+        //hoverBox.addEventListener('mouseover', function Event() {
+            //hoverBox.style.backgroundColor = "black";
+        //})
+    //}
+//}
 
 
-
-
+createChildElements(512);   //128, 256, 512
