@@ -4,7 +4,7 @@ gridSquare.setAttribute("id", "gridbox");
 let resetButton = document.getElementById("reset");
 
 
-function createChildElements(maxBoxes) {    // a function like this can be presented to user to select a number of sqaures
+function createChildElements(maxBoxes) { 
     
     for(i = 0; i < maxBoxes; i++ ) {
         let gridSquare = document.createElement("div");
@@ -52,7 +52,7 @@ function randomColor() {
 
 
 createChildElements(prompt("Enter how many squares:"));   //128, 256, 512, 1024
-console.log(randomColor());
+// console.log(randomColor());
 
 //resetButton.removeEventListener("mouseover", hover);
 
