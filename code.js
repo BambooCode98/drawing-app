@@ -1,10 +1,15 @@
-const gridContainerBox = document.getElementsByClassName("gridcontainer");  //remember this is an array-like thing
+const gridContainerBox = document.getElementsByClassName("gridcontainer");
+const slider = document.querySelector('.slider');
+const update = document.querySelector('.update');
+
+
+// console.log(gridContainerBox);
 let gridSquare = document.createElement("div");
 gridSquare.setAttribute("id", "gridbox");
 let resetButton = document.getElementById("reset");
 
 
-function createChildElements(maxBoxes) { 
+function createBoxes(maxBoxes) { 
     
     for(i = 0; i < maxBoxes; i++ ) {
         let gridSquare = document.createElement("div");
@@ -50,10 +55,12 @@ function randomColor() {
     }
 }
 
+update.addEventListener('click', () => {
+    console.log(slider.value);
+    gridSquare.style.display = "none";
+    createBoxes(slider.value);
+})
 
-createChildElements(prompt("Enter how many squares:"));   //128, 256, 512, 1024
-// console.log(randomColor());
 
-//resetButton.removeEventListener("mouseover", hover);
-
-
+//as long as the number of boxes ends in a 0 it will fill the container
+createBoxes(50);

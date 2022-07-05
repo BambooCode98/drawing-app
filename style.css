@@ -1,17 +1,18 @@
 .gridcontainer {
-    border: 2px red solid;
-    height: 100vh;
-    width: 100%;
+    /* border: 2px red solid; */
+    height: 500px;
+    width: 500px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(46px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(50px,1fr));
     margin: 0;
 }
 
 #gridbox {
     /* border: 1px solid red; */
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
     margin: 0;
+    /* padding:100%; */
     min-width: 0;
     background-color: white;
     
@@ -20,9 +21,16 @@
 }
 
 #reset {
-    padding: 25px 809px;
+    padding: 25px;
+    width: 500px;
+    border: 3px solid black;
+    border-radius: 5px;
 }
 
 #reset :hover {
     background-color: lightgreen;
+}
+
+.canvas{
+    border: 1px solid black;
 }
