@@ -22,6 +22,9 @@ window.addEventListener('load', () => {
   document.addEventListener('mousedown', initial);
   canvas.addEventListener('mousemove', draw);
   document.addEventListener('mouseup', stop);
+  document.addEventListener('touchstart', initial);
+  canvas.addEventListener('touchmove', draw);
+  document.addEventListener('touchend', stop);
   size.defaultValue = 1;
 
     
@@ -49,7 +52,6 @@ function draw(event) {
   ctx.strokeStyle = colors;
   ctx.moveTo(coords.x,coords.y);
   mousePosition(event)
-  console.log(coords);
   ctx.lineTo(coords.x,coords.y);
   ctx.stroke();
 }
@@ -76,8 +78,6 @@ function clearCanvas() {
 }
 
 function colorChanger(e) {
-  console.log(e.path[0].classList[0]);
-  console.log(colors);
   if(e.path[0].classList[0] === "green") {
     colors = "green";
     return colors;
