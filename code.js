@@ -55,11 +55,11 @@ function randomColor() {
     }
 }
 
-update.addEventListener('click', () => {
-    console.log(slider.value);
-    gridSquare.style.display = "none";
-    createBoxes(slider.value);
-})
+// update.addEventListener('click', () => {
+//     console.log(slider.value);
+//     gridSquare.style.display = "none";
+//     createBoxes(slider.value);
+// })
 
 
 //as long as the number of boxes ends in a 0 it will fill the container
