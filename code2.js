@@ -22,9 +22,9 @@ window.addEventListener('load', () => {
   document.addEventListener('mousedown', initial);
   canvas.addEventListener('mousemove', draw);
   document.addEventListener('mouseup', stop);
-  document.addEventListener('touchstart', initial);
+  canvas.addEventListener('touchstart', initial);
   canvas.addEventListener('touchmove', draw);
-  document.addEventListener('touchend', stop);
+  canvas.addEventListener('touchend', stop);
   size.defaultValue = 1;
 
     
@@ -78,22 +78,23 @@ function clearCanvas() {
 }
 
 function colorChanger(e) {
-  if(e.path[0].classList[0] === "green") {
+  console.log(e.composedPath()[0].classList[0]);
+  if(e.composedPath()[0].classList[0] === "green") {
     colors = "green";
     return colors;
-  } else if(e.path[0].classList[0] === "red") {
+  } else if(e.composedPath()[0].classList[0] === "red") {
     colors = "red";
     return colors;
-  } else if(e.path[0].classList[0] === "orange") {
+  } else if(e.composedPath()[0].classList[0] === "orange") {
     colors = "orange";
     return colors;
-  } else if(e.path[0].classList[0] === "yellow") {
+  } else if(e.composedPath()[0].classList[0] === "yellow") {
     colors = "yellow";
     return colors;
-  } else if(e.path[0].classList[0] === "blue") {
+  } else if(e.composedPath()[0].classList[0] === "blue") {
     colors = "blue";
     return colors;
-  } else if(e.path[0].classList[0] === "black") {
+  } else if(e.composedPath()[0].classList[0] === "black") {
     colors = "black";
     return colors;
   }
