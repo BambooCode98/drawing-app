@@ -9,7 +9,10 @@ let red = document.querySelector('.red');
 let blue = document.querySelector('.blue');
 let orange = document.querySelector('.orange');
 let black = document.querySelector('.black');
-let coords = {x: 0, y:0};
+let coords = {x:0, y:0};
+let touchCoords = {x:0, y:0};
+let touchX = 0;
+let id = [];
 let drawing = false;
 let colors = "";
 
@@ -18,13 +21,14 @@ let colors = "";
 // ctx.canvas.height = window.innerHeight;
 
 
-window.addEventListener('load', () => {
+window.addEventListener('load', (e) => {
+  e.preventDefault();
   document.addEventListener('mousedown', initial);
   canvas.addEventListener('mousemove', draw);
   document.addEventListener('mouseup', stop);
-  canvas.addEventListener('touchstart', initial);
-  canvas.addEventListener('touchmove', draw);
-  canvas.addEventListener('touchend', stop);
+  canvas.addEventListener('touchstart', initialTouch);
+  canvas.addEventListener('touchmove', drawTouch);
+  canvas.addEventListener('touchend', stopTouch);
   size.defaultValue = 1;
 
     
@@ -66,6 +70,52 @@ function stop() {
     drawing = false;
     coords.x = 0;
     coords.y = 0;
+  }
+}
+
+function initialTouch(e) {
+  e.preventDefault();
+  [...e.changedTouches].forEach(touch => {
+    id.push(touch.identifier);
+    // console.log(id);
+    touchPosition(touch);
+  })
+  drawing = true;
+}
+
+function drawTouch(e) {
+  if (drawing === false) return;
+  console.log(e.targetTouches[0]);
+  for(let i = 0; i < e.touches.length; i++) {
+    id.forEach( () => {
+      ctx.beginPath();
+      ctx.lineWidth = size.value;
+      ctx.lineCap = "round";
+      ctx.strokeStyle = colors;
+      ctx.moveTo(touchCoords.x,touchCoords.y);
+      [...e.changedTouches].forEach(touch => {
+        touchPosition(touch);
+      })
+      ctx.lineTo(touchCoords.x,touchCoords.y);
+      ctx.stroke();
+    })
+  }
+  // [...e.changedTouches].forEach(touch => {
+  // })
+}
+
+function touchPosition(touch) {
+  touchCoords.x = touch.pageX;
+  touchCoords.y = touch.pageY;
+  // return touchCoords;
+}
+
+function stopTouch(e) {
+  if (drawing === true) {
+    drawing = false;
+    touchCoords.x = 0;
+    touchCoords.y = 0;
+    id = [];
   }
 }
 
