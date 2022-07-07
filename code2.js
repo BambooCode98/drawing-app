@@ -76,7 +76,6 @@ function stop() {
 function initialTouch(e) {
   e.preventDefault();
   [...e.changedTouches].forEach(touch => {
-    id.push(touch.identifier);
     // console.log(id);
     touchPosition(touch);
   })
@@ -85,37 +84,42 @@ function initialTouch(e) {
 
 function drawTouch(e) {
   if (drawing === false) return;
-  console.log(e.targetTouches[0]);
-  for(let i = 0; i < e.touches.length; i++) {
-    id.forEach( () => {
-      ctx.beginPath();
-      ctx.lineWidth = size.value;
-      ctx.lineCap = "round";
-      ctx.strokeStyle = colors;
-      ctx.moveTo(touchCoords.x,touchCoords.y);
-      [...e.changedTouches].forEach(touch => {
-        touchPosition(touch);
-      })
-      ctx.lineTo(touchCoords.x,touchCoords.y);
-      ctx.stroke();
-    })
-  }
-  // [...e.changedTouches].forEach(touch => {
-  // })
+  // console.log(e.targetTouches[0]);
+  // id = e.changedTouches;
+  // console.log(id);
+  
+  [...e.changedTouches].forEach( touch => {
+    console.log(touch.pageY);
+    ctx.beginPath();
+    ctx.lineWidth = size.value;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = colors;
+    ctx.moveTo(touch.pageX,touch.pageY);
+    // [...e.changedTouches].forEach(touch => {
+    //   touchPosition(touch);
+    // })
+    ctx.lineTo(touch.pageX,touch.pageY);
+    ctx.stroke();
+  })
+    
+
+  
+  
 }
 
 function touchPosition(touch) {
   touchCoords.x = touch.pageX;
   touchCoords.y = touch.pageY;
-  // return touchCoords;
 }
 
 function stopTouch(e) {
   if (drawing === true) {
     drawing = false;
-    touchCoords.x = 0;
-    touchCoords.y = 0;
-    id = [];
+    // touchCoords.x = 0;
+    // touchCoords.y = 0;
+    // [...e.changedTouches].forEach( touch => {
+
+    // })
   }
 }
 
