@@ -2,7 +2,6 @@ const canvas = document.querySelector('.canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.querySelector('.clear');
 let size = document.querySelector('.slider');
-// let colors = document.querySelector('.color');
 let green = document.querySelector('.green');
 let yellow = document.querySelector('.yellow');
 let red = document.querySelector('.red');
@@ -10,13 +9,13 @@ let blue = document.querySelector('.blue');
 let orange = document.querySelector('.orange');
 let black = document.querySelector('.black');
 let coords = {x:0, y:0};
-let touchCoords = {x:0, y:0};
-let touchX = 0;
-let id = [];
+// let touchCoords = {x:0, y:0};
+let [x,y] = [0,0];
+// let touchX = 0;
+// let id = [];
 let drawing = false;
 let colors = "";
 
-// console.log(green);
 // ctx.canvas.width = window.innerWidth;
 // ctx.canvas.height = window.innerHeight;
 
@@ -76,29 +75,28 @@ function stop() {
 function initialTouch(e) {
   e.preventDefault();
   [...e.changedTouches].forEach(touch => {
-    // console.log(id);
+    // [x,y] = [0, 0];
     touchPosition(touch);
+    console.log(x,y);
+    // ctx.beginPath();
+    // ctx.arc(touch.pageX,touch.pageY,size.value-size.value,0,2*Math.PI);
+    // ctx.fill();
+    // ctx.stroke();
   })
   drawing = true;
+  // console.log(e.changedTouches);
 }
 
 function drawTouch(e) {
   if (drawing === false) return;
-  // console.log(e.targetTouches[0]);
-  // id = e.changedTouches;
-  // console.log(id);
-  
   [...e.changedTouches].forEach( touch => {
-    console.log(touch.pageY);
     ctx.beginPath();
     ctx.lineWidth = size.value;
     ctx.lineCap = "round";
     ctx.strokeStyle = colors;
     ctx.moveTo(touch.pageX,touch.pageY);
-    // [...e.changedTouches].forEach(touch => {
-    //   touchPosition(touch);
-    // })
-    ctx.lineTo(touch.pageX,touch.pageY);
+    touchPosition(touch);
+    ctx.lineTo(touch.pageX,touch.PageY);
     ctx.stroke();
   })
     
@@ -108,8 +106,9 @@ function drawTouch(e) {
 }
 
 function touchPosition(touch) {
-  touchCoords.x = touch.pageX;
-  touchCoords.y = touch.pageY;
+  x = touch.pageX;
+  y = touch.pageY;
+  console.log(x,y);
 }
 
 function stopTouch(e) {
@@ -118,7 +117,8 @@ function stopTouch(e) {
     // touchCoords.x = 0;
     // touchCoords.y = 0;
     // [...e.changedTouches].forEach( touch => {
-
+      x = 0;
+      y = 0;
     // })
   }
 }
