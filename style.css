@@ -9,7 +9,7 @@
     display: flex;
 }
 
-.red, .orange, .yellow, .green, .blue, .black{
+.red, .orange, .yellow, .green, .blue, .black, .rby{
     border: 1px solid black;
     height: 50px;
     width: 50px;
@@ -37,4 +37,8 @@
 
 .black{
     background-color: black;
+}
+
+.rby{
+    background-image: linear-gradient(red 30% ,blue 30%, blue 60%, yellow 60%);
 }

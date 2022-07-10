@@ -8,13 +8,14 @@ let red = document.querySelector('.red');
 let blue = document.querySelector('.blue');
 let orange = document.querySelector('.orange');
 let black = document.querySelector('.black');
+let rby = document.querySelector('.rby');
 let coords = {x:0, y:0};
-// let touchCoords = {x:0, y:0};
-let [x,y] = [0,0];
-// let touchX = 0;
-// let id = [];
+let touchCoords = {x:0, y:0};
+// let {x,y} = {0,0};
+let hue = 0;
 let drawing = false;
 let colors = "";
+let colorInt;
 
 // ctx.canvas.width = window.innerWidth;
 // ctx.canvas.height = window.innerHeight;
@@ -22,9 +23,9 @@ let colors = "";
 
 window.addEventListener('load', (e) => {
   e.preventDefault();
-  document.addEventListener('mousedown', initial);
+  canvas.addEventListener('mousedown', initial);
   canvas.addEventListener('mousemove', draw);
-  document.addEventListener('mouseup', stop);
+  canvas.addEventListener('mouseup', stop);
   canvas.addEventListener('touchstart', initialTouch);
   canvas.addEventListener('touchmove', drawTouch);
   canvas.addEventListener('touchend', stopTouch);
@@ -41,6 +42,7 @@ yellow.addEventListener('click', colorChanger)
 orange.addEventListener('click', colorChanger)
 red.addEventListener('click', colorChanger)
 black.addEventListener('click', colorChanger)
+rby.addEventListener('click', multiColor)
 
 function initial(event) {
   mousePosition(event);
@@ -52,6 +54,9 @@ function draw(event) {
   ctx.beginPath();
   ctx.lineWidth = size.value;
   ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  // hue++;
+  // multiColor();
   ctx.strokeStyle = colors;
   ctx.moveTo(coords.x,coords.y);
   mousePosition(event)
@@ -69,35 +74,33 @@ function stop() {
     drawing = false;
     coords.x = 0;
     coords.y = 0;
+    clearInterval(colorInt);
   }
 }
 
 function initialTouch(e) {
   e.preventDefault();
   [...e.changedTouches].forEach(touch => {
-    // [x,y] = [0, 0];
     touchPosition(touch);
-    console.log(x,y);
-    // ctx.beginPath();
-    // ctx.arc(touch.pageX,touch.pageY,size.value-size.value,0,2*Math.PI);
-    // ctx.fill();
-    // ctx.stroke();
+    console.log(touchCoords);
+    ctx.beginPath();
+    ctx.lineWidth = size.value;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = colors;
+    
   })
   drawing = true;
-  // console.log(e.changedTouches);
 }
 
 function drawTouch(e) {
   if (drawing === false) return;
   [...e.changedTouches].forEach( touch => {
-    ctx.beginPath();
-    ctx.lineWidth = size.value;
-    ctx.lineCap = "round";
-    ctx.strokeStyle = colors;
     ctx.moveTo(touch.pageX,touch.pageY);
     touchPosition(touch);
-    ctx.lineTo(touch.pageX,touch.PageY);
+    ctx.lineTo(touchCoords.x,touchCoords.y);
     ctx.stroke();
+    ctx.closePath();
   })
     
 
@@ -106,19 +109,18 @@ function drawTouch(e) {
 }
 
 function touchPosition(touch) {
-  x = touch.pageX;
-  y = touch.pageY;
-  console.log(x,y);
+  touchCoords.x = touch.pageX;
+  touchCoords.y = touch.pageY;
+  // console.log(x,y);
 }
 
 function stopTouch(e) {
   if (drawing === true) {
     drawing = false;
-    // touchCoords.x = 0;
-    // touchCoords.y = 0;
+    touchCoords.x = 0;
+    touchCoords.y = 0;
     // [...e.changedTouches].forEach( touch => {
-      x = 0;
-      y = 0;
+      
     // })
   }
 }
@@ -132,7 +134,7 @@ function clearCanvas() {
 }
 
 function colorChanger(e) {
-  console.log(e.composedPath()[0].classList[0]);
+  // console.log(e.composedPath()[0].classList[0]);
   if(e.composedPath()[0].classList[0] === "green") {
     colors = "green";
     return colors;
@@ -151,5 +153,19 @@ function colorChanger(e) {
   } else if(e.composedPath()[0].classList[0] === "black") {
     colors = "black";
     return colors;
+  } else if(e.composedPath()[0].classList[0] === "rby") {
+    // colorInt = setInterval(multiColor(), 10)
+    // multiColor();
+    return colors;
   }
+}
+
+function multiColor() {
+  // hue++;
+  colorInt = setInterval( () => {
+    hue++;
+  }, 10)
+  colors = `hsl(${hue},100%,50%)`;
+  console.log(colors);
+  return colors;
 }
