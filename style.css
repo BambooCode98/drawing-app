@@ -5,14 +5,22 @@
     /* touch-action: none; */
 }
 
-.colorContainer{
+.colorContainer, .eraserContainer{
     display: flex;
 }
 
-.red, .orange, .yellow, .green, .blue, .black, .rby{
+.red, .orange, .yellow, .green, .blue, .black, .rby, .eraserSquare{
     border: 1px solid black;
     height: 50px;
     width: 50px;
+}
+
+.eraserCircle{
+    border: 1px solid black;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    margin-left: 15px;
 }
 
 .red{
@@ -40,5 +48,5 @@
 }
 
 .rby{
-    background-image: linear-gradient(red 30% ,blue 30%, blue 60%, yellow 60%);
+    background-image: linear-gradient(red, blue, yellow, green);
 }
