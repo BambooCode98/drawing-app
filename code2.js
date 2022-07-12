@@ -12,6 +12,7 @@ let rby = document.querySelector('.rby');
 let eraserSq = document.querySelector('.eraserSquare');
 let eraserC = document.querySelector('.eraserCircle');
 let download = document.querySelector('.download');
+let menubars = document.querySelector('.menubars');
 let menu = document.querySelector('.menu');
 let coords = {x:0, y:0};
 let touchCoords = {x:0, y:0};
@@ -59,8 +60,17 @@ download.addEventListener('click', (e) => {
   createAnchor.remove();
 })
 
-menu.addEventListener('click', () => {
+menubars.addEventListener('click', () => {
+  if(menu.style.display === '') {
+    menu.style.display = 'flex';
+    menu.style.height = `${window.innerHeight/1.25}px`;
+    menu.style.width = `${window.innerWidth/1.8}px`;
+    menubars.style.color = 'white';
+  } else if(menu.style.display === 'flex') {
+    menu.style.display = '';
+    menubars.style.color = 'black';
 
+  }
 })
 
 function initial(event) {
@@ -159,8 +169,8 @@ function sizeSetting() {
 
 function clearCanvas() {
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  clearInterval(colorInt);
-  colors = "black";
+  // clearInterval(colorInt);
+  // colors = "black";
 }
 
 function colorChanger(e) {
