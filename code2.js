@@ -22,12 +22,12 @@ let colors = "";
 let colorInt;
 let lineEnd = "";
 
-ctx.canvas.width = window.innerWidth;
-ctx.canvas.height = window.innerHeight;
 
 
 window.addEventListener('load', (e) => {
   e.preventDefault();
+  ctx.canvas.width = window.innerWidth;
+  ctx.canvas.height = window.innerHeight;
   canvas.addEventListener('mousedown', initial);
   canvas.addEventListener('mousemove', draw);
   canvas.addEventListener('mouseup', stop);
@@ -37,6 +37,12 @@ window.addEventListener('load', (e) => {
   size.defaultValue = 1;
 
     
+})
+
+screen.orientation.addEventListener('change', (e) => {
+  e.preventDefault();
+  ctx.canvas.width = window.innerWidth;
+  ctx.canvas.height = window.innerHeight;
 })
 
 size.addEventListener('click', sizeSetting)
@@ -91,7 +97,7 @@ function draw(event) {
   ctx.strokeStyle = colors;
   ctx.moveTo(coords.x,coords.y);
   mousePosition(event)
-  ctx.lineTo(coords.x,coords.y);
+  ctx.lineTo(event.offsetX,event.offsetY);
   ctx.stroke();
 }
 
@@ -112,7 +118,7 @@ function stop() {
 function initialTouch(e) {
   e.preventDefault();
   // [touchCoords.x,touchCoords.y] = [e.touches[0].pageX,e.touches[0].pageX]
-  [...e.changedTouches].forEach(touch => {
+  [...e.targetTouches].forEach(touch => {
     // touchPosition(touch);
     // console.log(touchCoords);
     [touchCoords.x,touchCoords.y] = [touch.pageX,touch.pageY]
@@ -124,7 +130,7 @@ function initialTouch(e) {
 
 function drawTouch(e) {
   if (drawing === false) return;
-  [...e.changedTouches].forEach( touch => {
+  [...e.targetTouches].forEach( touch => {
     ctx.beginPath();
     ctx.lineWidth = size.value;
     if(lineEnd === "square") {

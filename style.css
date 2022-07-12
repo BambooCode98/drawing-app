@@ -43,7 +43,6 @@ label{
   border-image: linear-gradient(green, blue) 7 7;
   padding: 3%;
   z-index: 0;
-  /* border-radius: 5px; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -159,20 +158,57 @@ label{
 }
 
 @media only screen and (min-width: 500px) {
-  .menubars:hover {
-    animation: menuColor 3s infinite;
-    animation-play-state: running;
-  }
 
-  @keyframes menuColor {
-    0% {
-      color: black;
-    }
-    50% {
-      color: rgb(216, 216, 216);
-    }
-    100% {
-      color: black;
-    }
-  }
+	
+
+}
+
+@media only screen and (min-width: 700px) {
+	.menubars:hover {
+		animation: menuColor 3s infinite;
+		animation-play-state: running;
+	}
+
+	@keyframes menuColor {
+		0% {
+			color: rgb(12, 12, 12);
+		}
+		50% {
+			color: rgb(216, 216, 216);
+		}
+		100% {
+			color: rgb(12, 12, 12);
+		}
+	}
+
+	.menubars, label{
+		font-size: 2.5em;
+	}
+
+	.red,
+	.orange,
+	.yellow,
+	.green,
+	.blue,
+	.black,
+	.rby,
+	.eraserSquare,
+	.eraserCircle {
+		height: 2.5em;
+		width: 2.5em;
+	}
+
+	.buttonContainer{
+		display: flex;
+		/* position: absolute; */
+		flex-direction: column;
+		top: 25%;
+		left: 60%;
+	}
+
+	.download, .clear{
+		height: 9em;
+		width: 11em;
+		font-size: 1em;
+	}
 }
