@@ -1,52 +1,149 @@
-
-
-.canvas{
-    border: 1px solid black;
-    /* touch-action: none; */
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.colorContainer, .eraserContainer{
-    display: flex;
+* {
+  user-select: none;
 }
 
-.red, .orange, .yellow, .green, .blue, .black, .rby, .eraserSquare{
-    border: 1px solid black;
-    height: 50px;
-    width: 50px;
+.canvas {
+  border: 1px solid black;
+  margin: 0;
 }
 
-.eraserCircle{
-    border: 1px solid black;
-    height: 50px;
-    width: 50px;
-    border-radius: 25px;
-    margin-left: 15px;
+.menubars {
+  cursor: pointer;
+  animation-play-state: paused;
+  position: absolute;
+  top: 2%;
+  left: 1%;
 }
 
-.red{
-    background-color: red;
+.menubars:hover {
+  animation: menuColor 3s infinite;
+  animation-play-state: running;
 }
 
-.orange{
-    background-color: orange;
+@keyframes menuColor {
+  0% {
+    color: black;
+  }
+  25% {
+    color: rgb(87, 87, 87);
+  }
+  50% {
+    color: rgb(105, 105, 105);
+  }
+  75% {
+    color: rgb(87, 87, 87);
+  }
+  100% {
+    color: black;
+  }
 }
 
-.green{
-    background-color: green;
+.menu {
+	
 }
 
-.yellow{
-    background-color: yellow;
+@media only screen and (min-width: 500px) {
+  /* .canvas{
+        height: 800px;
+        width: 800px;
+    } */
+  /* html{
+      display: flex;
+			justify-content: center;
+			position: relative;
+		}
+
+		.colorContainer {
+			display: flex;
+			position: absolute;
+			top: 50px;
+			left: 170px;
+		}
+
+		.eraserContainer{
+			display: flex;
+			position: absolute;
+			top: 140px;
+			left: 170px;
+		}
+
+		label{
+			margin-right: 0.5rem;
+			position: absolute;
+			top: -20px;
+		} */
 }
 
-.blue{
-    background-color: blue;
+.colorContainer,
+.eraserContainer {
+  display: flex;
 }
 
-.black{
-    background-color: black;
+.red,
+.orange,
+.yellow,
+.green,
+.blue,
+.black,
+.rby,
+.eraserSquare {
+  border: 1px solid black;
+  height: 50px;
+  width: 50px;
 }
 
-.rby{
-    background-image: linear-gradient(red, blue, yellow, green);
+.eraserCircle {
+  border: 1px solid black;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  margin-left: 15px;
+}
+
+.red {
+  background-color: red;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.green {
+  background-color: green;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.black {
+  background-color: black;
+}
+
+.rby {
+  background-image: linear-gradient(red, blue, yellow, green);
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.download,
+.clear {
+  border: 2px solid black;
+  border-radius: 3px;
+  background-color: white;
+  width: 90px;
+  height: 50px;
 }

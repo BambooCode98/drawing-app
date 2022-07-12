@@ -12,6 +12,7 @@ let rby = document.querySelector('.rby');
 let eraserSq = document.querySelector('.eraserSquare');
 let eraserC = document.querySelector('.eraserCircle');
 let download = document.querySelector('.download');
+let menu = document.querySelector('.menu');
 let coords = {x:0, y:0};
 let touchCoords = {x:0, y:0};
 let hue = 0;
@@ -20,8 +21,8 @@ let colors = "";
 let colorInt;
 let lineEnd = "";
 
-// ctx.canvas.width = window.innerWidth;
-// ctx.canvas.height = window.innerHeight;
+ctx.canvas.width = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
 
 
 window.addEventListener('load', (e) => {
@@ -50,7 +51,7 @@ eraserC.addEventListener('click', colorChanger)
 rby.addEventListener('click', multiColor)
 
 download.addEventListener('click', (e) => {
-  let canvasURL = canvas.toDataURL();
+  let canvasURL = canvas.toDataURL('yourDrawing/png','1');
   const createAnchor = document.createElement('a');
   createAnchor.href = canvasURL;
   createAnchor.download = "yourDrawing.png";
@@ -58,12 +59,9 @@ download.addEventListener('click', (e) => {
   createAnchor.remove();
 })
 
-// async function downloadCanvas() {
-//   let link = document.querySelector('.link');
-//   link.setAttribute('downlaod', 'yourDrawing.png');
-//   link.setAttribute('href', canvas.toDataURL('yourDrawing.png'));
-//   link.click();
-// }
+menu.addEventListener('click', () => {
+
+})
 
 function initial(event) {
   mousePosition(event);
@@ -103,10 +101,12 @@ function stop() {
 
 function initialTouch(e) {
   e.preventDefault();
+  // [touchCoords.x,touchCoords.y] = [e.touches[0].pageX,e.touches[0].pageX]
   [...e.changedTouches].forEach(touch => {
-    touchPosition(touch);
-    console.log(touchCoords);
-    
+    // touchPosition(touch);
+    // console.log(touchCoords);
+    [touchCoords.x,touchCoords.y] = [touch.pageX,touch.pageY]
+    console.log(touchCoords.x,touchCoords.y);
     
   })
   drawing = true;
@@ -124,11 +124,12 @@ function drawTouch(e) {
     }
     ctx.lineJoin = "round";
     ctx.strokeStyle = colors;
-    ctx.moveTo(touch.pageX,touch.pageY);
-    touchPosition(touch);
-    ctx.lineTo(touchCoords.x,touchCoords.y);
+    ctx.moveTo(touchCoords.x,touchCoords.y);
+    // touchPosition(touch);
+    ctx.lineTo(touch.pageX,touch.pageY);
     ctx.stroke();
     ctx.closePath();
+    [touchCoords.x,touchCoords.y] = [touch.pageX,touch.pageY];
   })
     
 
@@ -148,9 +149,7 @@ function stopTouch(e) {
     touchCoords.x = 0;
     touchCoords.y = 0;
     lineEnd = "round";
-    // [...e.changedTouches].forEach( touch => {
-      
-    // })
+    
   }
 }
 

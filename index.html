@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Etch-a-Sketch</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="style.css">
     </head>
 
@@ -21,37 +22,42 @@
         <br/>
         <br/>
         <button id="reset">Clear</button> -->
-        
-        <canvas class="canvas" height="800" width="800"></canvas>
+        <canvas class="canvas" height="440" width="340"></canvas>
+
         <br/>
         <br/>
-        <label>Change Drawing Size:</label>
-        <input type="range" min="0" max="100" step="1" class="slider">
-        <br/>
-        <br/>
-        <label>Change Color:</label>
-        <div class="colorContainer">
-          <div class="green"></div>
-          <div class="yellow"></div>
-          <div class="red"></div>
-          <div class="blue"></div>
-          <div class="orange"></div>
-          <div class="black"></div>
-          <div class="rby"></div>
+        <i class="fa-solid fa-bars menubars"></i>
+        <div class="menu">
+          <label>Change Drawing Size:</label>
+          <input type="range" min="0" max="100" step="1" class="slider">
+          <br/>
+          <br/>
+          <div class="colorContainer">
+            <label>Change Color:</label>
+            <div class="green"></div>
+            <div class="yellow"></div>
+            <div class="red"></div>
+            <div class="blue"></div>
+            <div class="orange"></div>
+            <div class="black"></div>
+            <div class="rby"></div>
+          </div>
+          <br/>
+          <br/>
+          <div class="eraserContainer">
+            <label>Eraser:</label>
+            <div class="eraserSquare"></div>
+            <div class="eraserCircle"></div>
+          </div>
+          <br/>
+          <br/>
+          <div class="buttonContainer">
+            <button class="clear">Clear</button>
+            <br/>
+            <br/>
+            <button class="download">Download Drawing</button>
+          </div>
         </div>
-        <br/>
-        <br/>
-        <label>Eraser:</label>
-        <div class="eraserContainer">
-          <div class="eraserSquare"></div>
-          <div class="eraserCircle"></div>
-        </div>
-        <br/>
-        <br/>
-        <button class="clear">Clear</button>
-        <br/>
-        <br/>
-        <button class="download">Download Drawing</button>
 
         <script src="code2.js"></script>
     </body>
