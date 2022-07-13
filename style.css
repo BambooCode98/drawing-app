@@ -157,9 +157,30 @@ label{
 	cursor: pointer;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 450px) and (max-height: 350px) {
 
-	
+	.menu{
+		overflow-x: scroll;
+		overflow-y: scroll;
+	}
+
+	.menubars{
+		top: 5%;
+	}
+
+	.buttonContainer{
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		top: 25%;
+		left: 69%;
+	}
+
+	.eraserContainer {
+		position: absolute;
+		top: 67%;
+		left: 5%;
+	}
 
 }
 

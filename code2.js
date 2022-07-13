@@ -43,6 +43,8 @@ screen.orientation.addEventListener('change', (e) => {
   e.preventDefault();
   ctx.canvas.width = window.innerWidth;
   ctx.canvas.height = window.innerHeight;
+  menu.style.height = `${window.innerHeight/1.25}px`;
+  menu.style.width = `${window.innerWidth/1.8}px`;
 })
 
 size.addEventListener('click', sizeSetting)
