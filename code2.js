@@ -71,8 +71,13 @@ download.addEventListener('click', (e) => {
 menubars.addEventListener('click', () => {
   if(menu.style.display === '') {
     menu.style.display = 'flex';
+    if(window.innerWidth >= 650) {
+      menu.style.width = `${window.innerWidth/5}px`
+    } else {
+      menu.style.width = `${window.innerWidth/1.8}px`;
+    }
+    console.log(window.innerWidth);
     menu.style.height = `${window.innerHeight/1.25}px`;
-    menu.style.width = `${window.innerWidth/1.8}px`;
     menubars.style.color = 'white';
   } else if(menu.style.display === 'flex') {
     menu.style.display = '';

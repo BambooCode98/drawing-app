@@ -221,15 +221,12 @@ label{
 
 	.buttonContainer{
 		display: flex;
-		/* position: absolute; */
-		flex-direction: column;
-		top: 25%;
-		left: 60%;
+		gap: 25px;		
 	}
 
 	.download, .clear{
-		height: 9em;
-		width: 11em;
+		height: 5em;
+		width: 7em;
 		font-size: 1em;
 	}
 }
