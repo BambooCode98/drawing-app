@@ -76,7 +76,6 @@ menubars.addEventListener('click', () => {
     } else {
       menu.style.width = `${window.innerWidth/1.8}px`;
     }
-    console.log(window.innerWidth);
     menu.style.height = `${window.innerHeight/1.25}px`;
     menubars.style.color = 'white';
   } else if(menu.style.display === 'flex') {
@@ -89,6 +88,19 @@ menubars.addEventListener('click', () => {
 function initial(event) {
   mousePosition(event);
   drawing = true;
+  ctx.beginPath();
+  ctx.lineWidth = size.value;
+  if(lineEnd === "square") {
+    ctx.lineCap = "square";
+  } else {
+    ctx.lineCap = "round";
+  }
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = colors;
+  ctx.moveTo(coords.x,coords.y);
+  mousePosition(event)
+  ctx.lineTo(event.offsetX,event.offsetY);
+  ctx.stroke();
 }
 
 function draw(event) {
@@ -124,12 +136,13 @@ function stop() {
 
 function initialTouch(e) {
   e.preventDefault();
-  // [touchCoords.x,touchCoords.y] = [e.touches[0].pageX,e.touches[0].pageX]
   [...e.targetTouches].forEach(touch => {
-    // touchPosition(touch);
-    // console.log(touchCoords);
+    
     [touchCoords.x,touchCoords.y] = [touch.pageX,touch.pageY]
-    console.log(touchCoords.x,touchCoords.y);
+    ctx.beginPath();
+    ctx.moveTo(touchCoords.x,touchCoords.y);
+    ctx.lineTo(touch.pageX,touch.pageY);
+    ctx.stroke();
     
   })
   drawing = true;
@@ -163,7 +176,6 @@ function drawTouch(e) {
 function touchPosition(touch) {
   touchCoords.x = touch.pageX;
   touchCoords.y = touch.pageY;
-  // console.log(x,y);
 }
 
 function stopTouch(e) {
@@ -187,7 +199,6 @@ function clearCanvas() {
 }
 
 function colorChanger(e) {
-  // console.log(e.composedPath()[0].classList[0]);
   if(e.composedPath()[0].classList[0] === "green") {
     clearInterval(colorInt);
     colors = "green";
@@ -228,7 +239,6 @@ function colorChanger(e) {
 function multiColor() {
   colorInt = setInterval( () => {
     hue++;
-    // console.log(hue);
     colors = `hsl(${hue},100%,50%)`;
     return colors;
   }, 10)
