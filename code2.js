@@ -20,9 +20,11 @@ let speed = document.querySelector('.speed');
 // let lineSpeed;
 let coords = {x:0, y:0};
 let touchCoords = {x:0, y:0};
-let [dx,dy] = [Math.random()*10,Math.random()*10];
+let [dx,dy] = [0,0];
 // let [x,y] = [canvas.width,canvas.height];
-let [x,y] = [Math.random()*10,Math.random()*10];
+// let [x,y] = [Math.random()*10,Math.random()*10];
+let [x,y] = [0,0];
+let autoPoints = [];
 let autoDrawing = false;
 let hue = 0;
 let drawing = false;
@@ -70,10 +72,18 @@ rby.addEventListener('click', multiColor)
 auto.addEventListener('click', autoDraw)
 stopAuto.addEventListener('click', stopAutoDraw)
 
-speed.addEventListener('click', () => {
-  console.log(speed.value);
+// speed.addEventListener('click', () => {
+//   console.log(speed.value);
+//   let points = speed.value;
+//   if(autoPoints.length === 10) {
+//     return autoPoints;
+//   } else {
+//     autoPoints.push(points);
+//     console.log(autoPoints);
+//     return autoPoints;
+//   }
 
-})
+// })
 
 download.addEventListener('click', (e) => {
   let canvasURL = canvas.toDataURL('yourDrawing/png','1');
@@ -269,11 +279,14 @@ function multiColor() {
 
 function autoDraw() {
   autoDrawing = true;
+  [x,y] = [canvas.width/2, canvas.height/2];
+  [dx,dy] = [Math.random()*10,Math.random()*10];
   if(autoDrawing === false) {
     console.log('not drawing');
     return;
   } else {
     console.log('drawing');
+    
     autoInt = setInterval( () => {
       ctx.beginPath();
       ctx.lineWidth = size.value;
@@ -296,7 +309,9 @@ function autoDraw() {
       ctx.lineTo(x,y);
       ctx.stroke();
     }, 10)
+    
     auto.removeEventListener('click', autoDraw);
+    
   }
 }
 
@@ -304,5 +319,5 @@ function stopAutoDraw() {
   clearInterval(autoInt)
   autoDrawing = false;
   console.log('stopping');
-  auto.addEventListener('click', autoDraw)
+  auto.addEventListener('click', autoDraw);
 }

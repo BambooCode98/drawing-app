@@ -172,7 +172,7 @@ label{
 	cursor: pointer;
 }
 
-@media only screen and (min-width: 450px) and (max-height: 350px) {
+@media only screen and (min-width: 350px) and (max-height: 450px) {
 
 	.menu{
 		overflow-x: scroll;
@@ -209,7 +209,43 @@ label{
 	}
 }
 
-@media only screen and (min-width: 700px) {
+/* @media only screen and (min-width:700px) and (max-height: 450px) {
+
+	.menu{
+		overflow-x: scroll;
+		overflow-y: scroll;
+	}
+
+	.menubars{
+		top: 5%;
+	}
+
+	.buttonContainer{
+		display: flex;
+		gap: 5px;
+		top: 95%;
+		left: 5%;
+		padding-bottom: 25px;
+	}
+
+	.eraserContainer {
+		position: absolute;
+		top: 67%;
+		left: 5%;
+	}
+
+	.auto, .stopAuto, .speed{
+		position: relative;
+		top: 3%;
+		left: 30%;
+	}
+
+	.speed{
+		width: 25%;
+	}
+} */
+
+@media only screen and (min-width: 800px) {
 	.menubars:hover {
 		animation: menuColor 3s infinite;
 		animation-play-state: running;
