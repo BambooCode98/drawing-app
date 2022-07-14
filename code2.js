@@ -14,12 +14,21 @@ let eraserC = document.querySelector('.eraserCircle');
 let download = document.querySelector('.download');
 let menubars = document.querySelector('.menubars');
 let menu = document.querySelector('.menu');
+const auto = document.querySelector('.auto');
+const stopAuto = document.querySelector('.stopAuto');
+let speed = document.querySelector('.speed');
+// let lineSpeed;
 let coords = {x:0, y:0};
 let touchCoords = {x:0, y:0};
+let [dx,dy] = [Math.random()*10,Math.random()*10];
+// let [x,y] = [canvas.width,canvas.height];
+let [x,y] = [Math.random()*10,Math.random()*10];
+let autoDrawing = false;
 let hue = 0;
 let drawing = false;
 let colors = "";
 let colorInt;
+let autoInt;
 let lineEnd = "";
 
 
@@ -58,6 +67,13 @@ black.addEventListener('click', colorChanger)
 eraserSq.addEventListener('click', colorChanger)
 eraserC.addEventListener('click', colorChanger)
 rby.addEventListener('click', multiColor)
+auto.addEventListener('click', autoDraw)
+stopAuto.addEventListener('click', stopAutoDraw)
+
+speed.addEventListener('click', () => {
+  console.log(speed.value);
+  
+})
 
 download.addEventListener('click', (e) => {
   let canvasURL = canvas.toDataURL('yourDrawing/png','1');
@@ -72,7 +88,7 @@ menubars.addEventListener('click', () => {
   if(menu.style.display === '') {
     menu.style.display = 'flex';
     if(window.innerWidth >= 650) {
-      menu.style.width = `${window.innerWidth/5}px`
+      menu.style.width = `${window.innerWidth/2.5}px`
     } else {
       menu.style.width = `${window.innerWidth/1.8}px`;
     }
@@ -136,10 +152,19 @@ function stop() {
 
 function initialTouch(e) {
   e.preventDefault();
+  // touchPosition(touch);
   [...e.targetTouches].forEach(touch => {
     
     [touchCoords.x,touchCoords.y] = [touch.pageX,touch.pageY]
     ctx.beginPath();
+    ctx.lineWidth = size.value;
+    if(lineEnd === "square") {
+      ctx.lineCap = "square";
+    } else {
+      ctx.lineCap = "round";
+    }
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = colors;
     ctx.moveTo(touchCoords.x,touchCoords.y);
     ctx.lineTo(touch.pageX,touch.pageY);
     ctx.stroke();
@@ -242,5 +267,38 @@ function multiColor() {
     colors = `hsl(${hue},100%,50%)`;
     return colors;
   }, 10)
-  console.log(colors);
+}
+
+function autoDraw() {
+  autoDrawing = true;
+  autoInt = setInterval( () => {
+    ctx.beginPath();
+    ctx.lineWidth = size.value;
+    if(lineEnd === "square") {
+      ctx.lineCap = "square";
+    } else {
+      ctx.lineCap = "round";
+    }
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = colors;
+    ctx.moveTo(x,y);
+    // console.log('direction',dx,dy);
+    console.log("x+y",x,y);
+    if(y + dy < 0 || y + dy > canvas.height) {
+      dy = -dy;
+    }
+    if(x < 0 || x > canvas.width) {
+      dx = -dx;
+    }
+    console.log(x,y);
+    x += dx;
+    y += dy;
+    console.log(x,y);
+    ctx.lineTo(x,y);
+    ctx.stroke();
+  }, 10)
+}
+
+function stopAutoDraw() {
+  clearInterval(autoInt)
 }

@@ -56,7 +56,6 @@ label{
 .sliderbox {
   display: flex;
   flex-direction: column;
-
 }
 
 .sliderbox{
@@ -138,6 +137,22 @@ label{
   background-image: linear-gradient(red, blue, yellow, green);
 }
 
+.auto, .stopAuto, .speed{
+	position: relative;
+	top: -30%;
+	left: 20%;
+	cursor: pointer;
+}
+
+.speed{
+	width: 50%;
+	margin-top: 2px;
+}
+
+.auto:hover, .stopAuto:hover{
+	color: lightgreen;
+}
+
 .buttonContainer {
   display: flex;
   gap: 10px;
@@ -170,10 +185,11 @@ label{
 
 	.buttonContainer{
 		display: flex;
-		flex-direction: column;
-		gap: 0;
-		top: 25%;
-		left: 69%;
+		/* flex-direction: column; */
+		gap: 5px;
+		top: 95%;
+		left: 5%;
+		padding-bottom: 25px;
 	}
 
 	.eraserContainer {
@@ -182,6 +198,15 @@ label{
 		left: 5%;
 	}
 
+	.auto, .stopAuto, .speed{
+		position: relative;
+		top: 3%;
+		left: 30%;
+	}
+
+	.speed{
+		width: 25%;
+	}
 }
 
 @media only screen and (min-width: 700px) {
@@ -228,5 +253,16 @@ label{
 		height: 5em;
 		width: 7em;
 		font-size: 1em;
+	}
+
+	.auto, .stopAuto, .speed{
+		position: relative;
+		top: -19%;
+		left: 29%;
+		font-size: 1.8rem;
+	}
+
+	.speed{
+		width: 50%;
 	}
 }
