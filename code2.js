@@ -72,7 +72,7 @@ stopAuto.addEventListener('click', stopAutoDraw)
 
 speed.addEventListener('click', () => {
   console.log(speed.value);
-  
+
 })
 
 download.addEventListener('click', (e) => {
@@ -152,7 +152,6 @@ function stop() {
 
 function initialTouch(e) {
   e.preventDefault();
-  // touchPosition(touch);
   [...e.targetTouches].forEach(touch => {
     
     [touchCoords.x,touchCoords.y] = [touch.pageX,touch.pageY]
@@ -186,7 +185,6 @@ function drawTouch(e) {
     ctx.lineJoin = "round";
     ctx.strokeStyle = colors;
     ctx.moveTo(touchCoords.x,touchCoords.y);
-    // touchPosition(touch);
     ctx.lineTo(touch.pageX,touch.pageY);
     ctx.stroke();
     ctx.closePath();
@@ -219,8 +217,6 @@ function sizeSetting() {
 
 function clearCanvas() {
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  // clearInterval(colorInt);
-  // colors = "black";
 }
 
 function colorChanger(e) {
@@ -269,36 +265,44 @@ function multiColor() {
   }, 10)
 }
 
+//autoDraw section
+
 function autoDraw() {
   autoDrawing = true;
-  autoInt = setInterval( () => {
-    ctx.beginPath();
-    ctx.lineWidth = size.value;
-    if(lineEnd === "square") {
-      ctx.lineCap = "square";
-    } else {
-      ctx.lineCap = "round";
-    }
-    ctx.lineJoin = "round";
-    ctx.strokeStyle = colors;
-    ctx.moveTo(x,y);
-    // console.log('direction',dx,dy);
-    console.log("x+y",x,y);
-    if(y + dy < 0 || y + dy > canvas.height) {
-      dy = -dy;
-    }
-    if(x < 0 || x > canvas.width) {
-      dx = -dx;
-    }
-    console.log(x,y);
-    x += dx;
-    y += dy;
-    console.log(x,y);
-    ctx.lineTo(x,y);
-    ctx.stroke();
-  }, 10)
+  if(autoDrawing === false) {
+    console.log('not drawing');
+    return;
+  } else {
+    console.log('drawing');
+    autoInt = setInterval( () => {
+      ctx.beginPath();
+      ctx.lineWidth = size.value;
+      if(lineEnd === "square") {
+        ctx.lineCap = "square";
+      } else {
+        ctx.lineCap = "round";
+      }
+      ctx.lineJoin = "round";
+      ctx.strokeStyle = colors;
+      ctx.moveTo(x,y);
+      if(y + dy < 0 || y + dy > canvas.height) {
+        dy = -dy;
+      }
+      if(x < 0 || x > canvas.width) {
+        dx = -dx;
+      }
+      x += dx;
+      y += dy;
+      ctx.lineTo(x,y);
+      ctx.stroke();
+    }, 10)
+    auto.removeEventListener('click', autoDraw);
+  }
 }
 
 function stopAutoDraw() {
   clearInterval(autoInt)
+  autoDrawing = false;
+  console.log('stopping');
+  auto.addEventListener('click', autoDraw)
 }
