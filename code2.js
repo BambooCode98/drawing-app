@@ -17,12 +17,10 @@ let menu = document.querySelector('.menu');
 const auto = document.querySelector('.auto');
 const stopAuto = document.querySelector('.stopAuto');
 let speed = document.querySelector('.speed');
-// let lineSpeed;
 let coords = {x:0, y:0};
 let touchCoords = {x:0, y:0};
 let [dx,dy] = [0,0];
-// let [x,y] = [canvas.width,canvas.height];
-// let [x,y] = [Math.random()*10,Math.random()*10];
+
 let [x,y] = [0,0];
 let autoPoints = [];
 let autoDrawing = false;
