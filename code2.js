@@ -37,8 +37,6 @@ window.addEventListener('load', (e) => {
   e.preventDefault();
   ctx.canvas.width = window.innerWidth;
   ctx.canvas.height = window.innerHeight;
-  ctx.fillstyle = "white";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
   canvas.addEventListener('mousedown', initial);
   canvas.addEventListener('mousemove', draw);
   canvas.addEventListener('mouseup', stop);
