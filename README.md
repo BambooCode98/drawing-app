@@ -1,9 +1,9 @@
-#Drawing App
+Drawing App
 ------------
 
 This drawing pad was created with vanilla javascript, and made use of the canvas feature to allow the user to draw in the browser window.
 
-##Features
+Features
 
 1. Consists of a simple auto-drawing feature where a line will be drawn on the screen and bounce off the edges of the screen. This continues until it is stopped by the user.
 
